@@ -7,7 +7,12 @@ import pydantic
 
 secret = os.getenv("SECRET")
 githubToken = "token " + os.getenv("GH_TOKEN")
-client = httpx.AsyncClient(headers={"Authorization": githubToken})
+client = httpx.AsyncClient(
+    headers={
+        "Authorization": githubToken,
+        "User-Agent": "gitea-dispatcher v0.0.0 (https://github.com/Trim21/gitea-dispatcher)",
+    }
+)
 
 app = FastAPI()
 
