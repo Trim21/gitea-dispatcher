@@ -16,8 +16,8 @@ class Payload(pydantic.BaseModel):
     secret: str
 
 
-@app.get("/{path:path}", response_class=JSONResponse)
-async def index(path, payload: Payload, event=Header(..., alias="X-Gitea-Event")):
+@app.post("/dispatch", response_class=JSONResponse)
+async def post(payload: Payload, event=Header(..., alias="X-Gitea-Event")):
     if secret == payload.secret:
         r = await client.post(
             "https://api.github.com/repos/Trim21/actions-cron/dispatches",
@@ -25,3 +25,8 @@ async def index(path, payload: Payload, event=Header(..., alias="X-Gitea-Event")
         )
         return r.json()
     return {"error": "secret mismatch"}
+
+
+@app.get("/dispatch", response_class=JSONResponse)
+async def index():
+    return {"hello": "world"}
