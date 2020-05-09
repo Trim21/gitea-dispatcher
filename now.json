@@ -6,6 +6,10 @@
     {
       "src": "/dispatch",
       "dest": "api/dispatch.py"
+    },
+    {
+      "src": "/",
+      "dest": "api/index.py"
     }
   ]
 }
