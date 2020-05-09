@@ -1,22 +1,11 @@
 {
   "version": 2,
-  "name": "go",
+  "name": "python",
   "public": true,
-  "builds": [
-    {
-      "src": "api/**/*.go",
-      "use": "@now/go"
-    }
-  ],
-  "build": {
-    "env": {
-      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
-    }
-  },
   "routes": [
     {
       "src": "/dispatch",
-      "dest": "api/dispatch.go"
+      "dest": "api/dispatch.py"
     }
   ]
 }
